@@ -1,80 +1,58 @@
-let weather = [
-	{
-		name: "paris",
-		temp: 19.7,
-		humidity: 80,
-	},
-	{
-		name: "tokyo",
-		temp: 17.3,
-		humidity: 50,
-	},
-	{
-		name: "lisbon",
-		temp: 30.2,
-		humidity: 20,
-	},
-	{
-		name: "san francisco",
-		temp: 20.9,
-		humidity: 100,
-	},
-	{
-		name: "oslo",
-		temp: -5,
-		humidity: 20,
-	},
-];
-function convertCelsiumToFahrenheits(celsium) {
+function formatData(date) {
+	let daysOfWeek = [
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+	];
+	let dayOfWeek = daysOfWeek[date.getDay()];
+	let hours = date.getHours();
+	let minutes = ("0" + date.getMinutes()).slice(-2);
+	let formattedDate = `${dayOfWeek} ${hours}:${minutes}`;
+	return formattedDate;
+}
+
+function changeCity(event) {}
+
+function changeCity(event) {
+	if (event.key === "Enter") {
+		event.preventDefault();
+		let header = document.querySelector("header");
+		header.innerHTML = event.target.value;
+	}
+}
+function convertCelsiusToFahrenheit(celsium) {
 	let fahrenheit = (celsium * 9) / 5 + 32;
 	return Math.round(fahrenheit);
 }
 
-function roundValues() {
-	for (const iterator of weather) {
-		iterator.temp = Math.round(iterator.temp);
-	}
-}
-function checkInput(input2) {
-	return input2 == userCity;
+function convertFahrenheitToCelsius(fahrenheit) {
+	let celsius = ((fahrenheit - 32) * 5) / 9;
+	return Math.round(celsius);
 }
 
-function capitalizeFirstLetter(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+function changeTemperatureToCelsius(event) {
+	event.preventDefault();
+	let temperature = document.querySelector(".current_temperature");
+	temperature.innerHTML = convertFahrenheitToCelsius(temperature.innerHTML);
 }
 
-function callMessage(cityFromList, index) {
-	if (cityFromList != undefined && index != -1) {
-		alert(
-			`It is currently ${weather[index].temp}°C (${convertCelsiumToFahrenheits(
-				weather[index].temp
-			)}°F) in ${capitalizeFirstLetter(userCity)} with a humidity of ${
-				weather[index].humidity
-			}%`
-		);
-	} else {
-		alert(
-			`Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${userCity}`
-		);
-	}
+function changeTemperatureToFahrenheit(event) {
+	event.preventDefault();
+	let temperature = document.querySelector(".current_temperature");
+	temperature.innerHTML = convertCelsiusToFahrenheit(temperature.innerHTML);
 }
 
-// write your code here
-let userCity = prompt("Enter a city?");
-userCity = userCity.toLowerCase().trim();
-roundValues();
-const map1 = weather.map((x) => x.name);
-let cityFromList = map1.find(checkInput);
-let index = map1.findIndex(checkInput);
-callMessage(cityFromList, index);
+let placeholderData = document.querySelector("#get-date");
+placeholderData.innerHTML = formatData(new Date());
 
-function displayUserName(response) {
-	// console.log(response.data.address.street);
-	let h1 = document.querySelector("h1");
-	response.data.forEach((user) => {
-		console.log(`name= ${user.name}  username= ${user.username} `);
-		h1.innerHTML += `${user.name} <br />`;
-	});
-}
-let ApiUrl = "https://jsonplaceholder.typicode.com/users/";
-axios.get(ApiUrl).then(displayUserName);
+let cityFromUserInput = document.querySelector("input");
+cityFromUserInput.addEventListener("keypress", changeCity);
+
+let linkCelsius = document.querySelector("#celsius");
+linkCelsius.addEventListener("click", changeTemperatureToCelsius);
+let linkFahrenheit = document.querySelector("#fahrenheit");
+linkFahrenheit.addEventListener("click", changeTemperatureToFahrenheit);
