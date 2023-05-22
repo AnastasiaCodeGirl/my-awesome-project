@@ -1,4 +1,91 @@
-h1 {
+body {
+  background: linear-gradient(to right, rgb(173, 83, 137), rgb(60, 16, 83));
+
+}
+
+header {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #fff;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+section {
+  color: #fff;
+  padding: 30px 30px;
+}
+
+i {
+  font-size: 25px;
+}
+
+.heading-style {
   text-align: center;
-  color: red;
+  font-family: 'Signika Negative', sans-serif;
+  color: #fff;
+  font-weight: 600;
+
+}
+
+.icon {
+  padding: 15px 0 0 15px;
+}
+
+.container {
+  font-weight: 400;
+  font-family: 'Signika Negative', sans-serif;
+}
+
+.scale {
+  margin: 0 4px;
+  font-size: 32px;
+  position: relative;
+  top: -28px;
+}
+
+.scale a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.card-text {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+span.card-text {
+  color: #666;
+}
+
+.card-title {
+  font-family: 'Signika Negative', sans-serif;
+}
+
+.col-sm-2 {
+  padding: 0 5px;
+}
+
+.current_temperature {
+  padding-left: 40px;
+  padding-right: 10px;
+  font-size: 68px;
+}
+
+.bg-opacity {
+  color: #fff;
+  background: transparent;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+#current_icon {
+  font-size: 80px;
+}
+
+#weather-cards {
+  background: transparent;
+  border: none;
 }
