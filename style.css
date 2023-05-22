@@ -89,3 +89,11 @@ span.card-text {
   background: transparent;
   border: none;
 }
+
+.github_link{
+  color: #fff;
+  text-align: center;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-style: italic;
+  margin-top: 60px;
+}
