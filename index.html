@@ -26,29 +26,35 @@
 		<img class="icon" src="img/app_icon.svg" alt="app_icon" width="90px" />
 		<div class="container">
 			<h1 class="heading-style">WeatherApp</h1>
-			<header>Amsterdam, North Holland, Netherlands</header>
-			<div class="input-group mb-3">
-				<input
-					type="text"
-					class="form-control"
-					placeholder="Change city"
-					aria-label="Change city" />
+			<header>Amsterdam</header>
+			<div class="row">
+				<div class="col-sm-10">
+					<div class="input-group mb-3">
+						<input
+							type="text"
+							class="form-control"
+							if="city-input"
+							placeholder="Change city"
+							aria-label="Change city" />
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<button type="button" class="btn btn-primary" id="get-current">
+						Current
+					</button>
+				</div>
 			</div>
-
-			<button type="button" class="btn btn-primary" id="get-current">
-				Current
-			</button>
 			<section>
 				<div class="row">
 					<div class="col-sm-4">
 						<!-- <span class="fa-solid fa-cloud-sun-rain" id="current_icon"></span> -->
-						<span class="current_temperature">13</span>
+						<span class="current_temperature"></span>
 						<span class="scale"
 							><a href="# " id="celsius">°C</a> |
 							<a href="#" id="fahrenheit">F°</a></span
 						>
-						<p class="card-text" id="get-date">Sun 7, 11:29 a.m.</p>
-						<p class="card-text" id="get-description">Rain showers</p>
+						<p class="card-text" id="get-date"></p>
+						<p class="card-text" id="get-description"></p>
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-4 row align-items-center-sm">
@@ -56,12 +62,12 @@
 							<a
 								href="#"
 								class="list-group-item list-group-item-action bg-opacity"
-								>Wind: <span id="wind">8</span> KMPH</a
+								>Wind: <span id="wind"></span> KMPH</a
 							>
 							<a
 								href="#"
 								class="list-group-item list-group-item-action bg-opacity"
-								>Humidity: <span id="humidity">89</span>%</a
+								>Humidity: <span id="humidity"></span>%</a
 							>
 						</a>
 					</div>

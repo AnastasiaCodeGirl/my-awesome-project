@@ -14,14 +14,18 @@ function formatData(date) {
 	let formattedDate = `${dayOfWeek} ${hours}:${minutes}`;
 	return formattedDate;
 }
+function searchCity(city) {
+	let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
+	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+	axios.get(apiUrl).then(displayWeatherCondition);
+}
 
 function changeCity(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
 		document.querySelector("header").innerHTML = event.target.value;
 		city = event.target.value;
-		apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-		axios.get(apiUrl).then(logCurrentTemperature);
+		searchCity(city);
 	}
 }
 function convertCelsiusToFahrenheit(celsium) {
@@ -45,7 +49,7 @@ function changeTemperatureToFahrenheit(event) {
 	let temperature = document.querySelector(".current_temperature");
 	temperature.innerHTML = convertCelsiusToFahrenheit(temperature.innerHTML);
 }
-function logCurrentTemperature(response) {
+function displayWeatherCondition(response) {
 	document.querySelector("header").innerHTML = response.data.name;
 	document.querySelector(".current_temperature").innerHTML = Math.round(
 		response.data.main.temp
@@ -62,10 +66,8 @@ function showPosition(position) {
 	let long = position.coords.longitude;
 	let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
 	let units = "metric";
-	console.log(lat);
-	console.log(long);
 	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
-	axios.get(apiUrl).then(logCurrentTemperature);
+	axios.get(apiUrl).then(displayWeatherCondition);
 }
 function getPosition(event) {
 	navigator.geolocation.getCurrentPosition(showPosition);
@@ -86,4 +88,5 @@ let header = document.querySelector("header");
 let city = header.innerHTML;
 let units = "metric";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-axios.get(apiUrl).then(logCurrentTemperature);
+axios.get(apiUrl).then(displayWeatherCondition);
+changeCity("Amsterdam");
