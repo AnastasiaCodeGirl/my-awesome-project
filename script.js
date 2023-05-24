@@ -18,8 +18,7 @@ function formatData(date) {
 function changeCity(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
-		let header = document.querySelector("header");
-		header.innerHTML = event.target.value;
+		document.querySelector("header").innerHTML = event.target.value;
 		city = event.target.value;
 		apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 		axios.get(apiUrl).then(logCurrentTemperature);
@@ -47,24 +46,16 @@ function changeTemperatureToFahrenheit(event) {
 	temperature.innerHTML = convertCelsiusToFahrenheit(temperature.innerHTML);
 }
 function logCurrentTemperature(response) {
-	// console.log(response);
-	let header = document.querySelector("header");
-	header.innerHTML = response.data.name;
-	let temperature = Math.round(response.data.main.temp);
-	city = response.data.name;
-	let temperatureLabel = document.querySelector(".current_temperature");
-	temperatureLabel.innerHTML = temperature;
-	let description = response.data.weather[0].description;
-	// let icon = response.data.weather[0].icon;
-	// console.log(icon);
-	let windSpeed = response.data.wind.speed;
-	let humidity = response.data.main.humidity;
-	let descriptionLabel = document.querySelector("#get-description");
-	let humidityLabel = document.querySelector("#humidity");
-	let windLabel = document.querySelector("#wind");
-	descriptionLabel.innerHTML = description;
-	humidityLabel.innerHTML = `Humidity: ${humidity}%`;
-	windLabel.innerHTML = `Wind: ${windSpeed} MPS`;
+	document.querySelector("header").innerHTML = response.data.name;
+	document.querySelector(".current_temperature").innerHTML = Math.round(
+		response.data.main.temp
+	);
+	document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+	document.querySelector("#wind").innerHTML = Math.round(
+		response.data.wind.speed
+	);
+	document.querySelector("#get-description").innerHTML =
+		response.data.weather[0].description;
 }
 function showPosition(position) {
 	let lat = position.coords.latitude;
