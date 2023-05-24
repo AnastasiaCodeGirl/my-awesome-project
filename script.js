@@ -1,10 +1,3 @@
-function showTemperature(response) {
-	let temperatureSelector = document.querySelector(".current_temperature");
-	let temperatureNow = Math.round(response.data.main.temp);
-	console.log(temperatureNow);
-	temperatureSelector.innerHTML = temperatureNow;
-}
-
 function formatData(date) {
 	let daysOfWeek = [
 		"Sunday",
@@ -22,15 +15,13 @@ function formatData(date) {
 	return formattedDate;
 }
 
+function changeCity(event) {}
+
 function changeCity(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
 		let header = document.querySelector("header");
-		let city = event.target.value;
-		header.innerHTML = city;
-		let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
-		let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-		axios.get(apiUrl).then(showTemperature);
+		header.innerHTML = event.target.value;
 	}
 }
 function convertCelsiusToFahrenheit(celsium) {
