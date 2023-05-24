@@ -80,7 +80,17 @@ span.card-text {
   font-weight: 600;
   font-size: 18px;
 }
+.github_link {
+  color: #fff;
+  text-align: center;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-style: italic;
+  margin-top: 60px;
+}
 
+#get-description{
+  text-transform: capitalize;
+}
 #current_icon {
   font-size: 80px;
 }
@@ -90,10 +100,3 @@ span.card-text {
   border: none;
 }
 
-.github_link{
-  color: #fff;
-  text-align: center;
-  font-family: 'Roboto', 'Helvetica', sans-serif;
-  font-style: italic;
-  margin-top: 60px;
-}

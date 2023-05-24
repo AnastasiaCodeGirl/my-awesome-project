@@ -15,13 +15,14 @@ function formatData(date) {
 	return formattedDate;
 }
 
-function changeCity(event) {}
-
 function changeCity(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
 		let header = document.querySelector("header");
 		header.innerHTML = event.target.value;
+		city = event.target.value;
+		apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+		axios.get(apiUrl).then(logCurrentTemperature);
 	}
 }
 function convertCelsiusToFahrenheit(celsium) {
@@ -45,14 +46,38 @@ function changeTemperatureToFahrenheit(event) {
 	let temperature = document.querySelector(".current_temperature");
 	temperature.innerHTML = convertCelsiusToFahrenheit(temperature.innerHTML);
 }
+function logCurrentTemperature(response) {
+	console.log(response);
+	let temperature = Math.round(response.data.main.temp);
+	city = response.data.name;
+	let temperatureLabel = document.querySelector(".current_temperature");
+	temperatureLabel.innerHTML = temperature;
+	let description = response.data.weather[0].description;
+	let icon = response.data.weather[0].icon;
+	console.log(icon);
+	let windSpeed = response.data.wind.speed;
+	let humidity = response.data.main.humidity;
+	let descriptionLabel = document.querySelector("#get-description");
+	let humidityLabel = document.querySelector("#humidity");
+	let windLabel = document.querySelector("#wind");
+	descriptionLabel.innerHTML = description;
+	humidityLabel.innerHTML = `Humidity: ${humidity}%`;
+	windLabel.innerHTML = `Wind: ${windSpeed} MPS`;
+}
 
 let placeholderData = document.querySelector("#get-date");
 placeholderData.innerHTML = formatData(new Date());
-
 let cityFromUserInput = document.querySelector("input");
 cityFromUserInput.addEventListener("keypress", changeCity);
-
 let linkCelsius = document.querySelector("#celsius");
 linkCelsius.addEventListener("click", changeTemperatureToCelsius);
 let linkFahrenheit = document.querySelector("#fahrenheit");
 linkFahrenheit.addEventListener("click", changeTemperatureToFahrenheit);
+
+let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
+let header = document.querySelector("header");
+let city = header.innerHTML;
+// let city = response.data.name;
+let units = "metric";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(logCurrentTemperature);
