@@ -70,6 +70,7 @@ function showPosition(position) {
 	axios.get(apiUrl).then(displayWeatherCondition);
 }
 function getPosition(event) {
+	event.preventDefault();
 	navigator.geolocation.getCurrentPosition(showPosition);
 }
 let getCurrentButton = document.querySelector("#get-current");
@@ -83,10 +84,4 @@ linkCelsius.addEventListener("click", changeTemperatureToCelsius);
 let linkFahrenheit = document.querySelector("#fahrenheit");
 linkFahrenheit.addEventListener("click", changeTemperatureToFahrenheit);
 
-let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
-let header = document.querySelector("header");
-let city = header.innerHTML;
-let units = "metric";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-axios.get(apiUrl).then(displayWeatherCondition);
-changeCity("Amsterdam");
+searchCity("Amsterdam");
