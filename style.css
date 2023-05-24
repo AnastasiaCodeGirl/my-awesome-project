@@ -99,4 +99,11 @@ span.card-text {
   background: transparent;
   border: none;
 }
+#get-current{
+  padding: 10px 20px;
+  color: #fff;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-weight: 600;
+
+}
 

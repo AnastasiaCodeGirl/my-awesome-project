@@ -47,14 +47,16 @@ function changeTemperatureToFahrenheit(event) {
 	temperature.innerHTML = convertCelsiusToFahrenheit(temperature.innerHTML);
 }
 function logCurrentTemperature(response) {
-	console.log(response);
+	// console.log(response);
+	let header = document.querySelector("header");
+	header.innerHTML = response.data.name;
 	let temperature = Math.round(response.data.main.temp);
 	city = response.data.name;
 	let temperatureLabel = document.querySelector(".current_temperature");
 	temperatureLabel.innerHTML = temperature;
 	let description = response.data.weather[0].description;
-	let icon = response.data.weather[0].icon;
-	console.log(icon);
+	// let icon = response.data.weather[0].icon;
+	// console.log(icon);
 	let windSpeed = response.data.wind.speed;
 	let humidity = response.data.main.humidity;
 	let descriptionLabel = document.querySelector("#get-description");
@@ -64,7 +66,21 @@ function logCurrentTemperature(response) {
 	humidityLabel.innerHTML = `Humidity: ${humidity}%`;
 	windLabel.innerHTML = `Wind: ${windSpeed} MPS`;
 }
-
+function showPosition(position) {
+	let lat = position.coords.latitude;
+	let long = position.coords.longitude;
+	let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
+	let units = "metric";
+	console.log(lat);
+	console.log(long);
+	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+	axios.get(apiUrl).then(logCurrentTemperature);
+}
+function getPosition(event) {
+	navigator.geolocation.getCurrentPosition(showPosition);
+}
+let getCurrentButton = document.querySelector("#get-current");
+getCurrentButton.addEventListener("click", getPosition);
 let placeholderData = document.querySelector("#get-date");
 placeholderData.innerHTML = formatData(new Date());
 let cityFromUserInput = document.querySelector("input");
@@ -77,7 +93,6 @@ linkFahrenheit.addEventListener("click", changeTemperatureToFahrenheit);
 let apiKey = "917b5cb46b9991bd0ab660f50601d0c6";
 let header = document.querySelector("header");
 let city = header.innerHTML;
-// let city = response.data.name;
 let units = "metric";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(logCurrentTemperature);
