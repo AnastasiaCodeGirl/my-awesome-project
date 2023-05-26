@@ -40,9 +40,9 @@ i {
 
 .scale {
   margin: 0 4px;
-  font-size: 32px;
+  font-size: 24px;
   position: relative;
-  top: -28px;
+  top: -24px;
 }
 
 .scale a {
@@ -70,9 +70,11 @@ span.card-text {
 .current_temperature {
   padding-left: 40px;
   padding-right: 10px;
-  font-size: 68px;
+  font-size: 50px;
 }
-
+.temperature{
+  padding-top: 30px;
+}
 .bg-opacity {
   color: #fff;
   background: transparent;
@@ -92,7 +94,7 @@ span.card-text {
   text-transform: capitalize;
 }
 #current_icon {
-  font-size: 80px;
+  margin-top: -30px;
 }
 
 #weather-cards {
