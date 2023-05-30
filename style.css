@@ -42,11 +42,6 @@ li::first-letter {
 .card-title {
   font-family: 'Signika Negative', sans-serif;
 }
-
-/* .col-sm-2 {
-  padding: 0 5px;
-} */
-
 .bg-opacity {
   color: #fff;
   background: transparent;
@@ -106,7 +101,7 @@ span.card-text {
 .weather-temperature .units {
   position: relative;
   top: -34px;
-  font-size: 18px;
+  font-size: 20px;
   }
   .weather-temperature a{
     color:#0d6efd;

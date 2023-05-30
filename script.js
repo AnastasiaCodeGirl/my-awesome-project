@@ -86,17 +86,9 @@ function displayForecast(response) {
 function search(city) {
 	let apiKey = "fed24a4a3934t32fo5a63bbe36a70167";
 	let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-	console.log(apiUrl);
 	axios.get(apiUrl).then(displayTemperature);
 }
-function displayFahrenheitTemperature(event) {
-	event.preventDefault();
-	celsiusLink.classList.remove("active");
-	fahrenheitLink.classList.add("active");
-	fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-	let temperatureElement = document.querySelector("#temperature");
-	temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
+
 function showPosition(position) {
 	let lat = position.coords.latitude;
 	let long = position.coords.longitude;
@@ -125,8 +117,6 @@ let getCurrentButton = document.querySelector("#get-current");
 getCurrentButton.addEventListener("click", getPosition);
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 let celsiusTemperature = null;
