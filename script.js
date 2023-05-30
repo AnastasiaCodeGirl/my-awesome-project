@@ -72,8 +72,8 @@ function displayForecast(response) {
 								<img src = ${forecastDay.condition.icon_url}
 								alt=${forecastDay.condition.description}>
 								<br />
-								<p class="card-text">${Math.round(forecastDay.temperature.maximum)}</p>
-								<span class="card-text">${Math.round(forecastDay.temperature.minimum)}</span>
+								<p class="card-text">${Math.round(forecastDay.temperature.maximum)}°</p>
+								<span class="card-text">${Math.round(forecastDay.temperature.minimum)}°</span>
 							</div>
 						</div>
 					</div>`;
