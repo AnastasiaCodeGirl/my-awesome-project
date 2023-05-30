@@ -23,60 +23,71 @@
 		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 	</head>
 	<body>
-		<img class="icon" src="img/app_icon.svg" alt="app_icon" width="90px" />
 		<div class="container">
-			<h1 class="heading-style">WeatherApp</h1>
-			<header>Amsterdam</header>
-			<div class="row">
-				<div class="col-sm-10">
-					<div class="input-group mb-3">
-						<input
-							type="text"
-							class="form-control"
-							if="city-input"
-							placeholder="Change city"
-							aria-label="Change city" />
+			<img class="icon" src="img/app_icon.svg" alt="app_icon" width="90px" />
+			<!-- <h1 class="heading-style">WeatherApp</h1> -->
+			<div class="weather-app-wrapper">
+				<div class="weather-app">
+					<form id="search-form" class="mb-3">
+						<div class="row">
+							<div class="col-sm-8">
+								<input
+									type="search"
+									placeholder="Type a city..."
+									id="city-input"
+									autocomplete="off"
+									class="form-control" />
+							</div>
+							<div class="col-sm-2">
+								<button
+									type="submit"
+									id="search-btn"
+									value="Search"
+									class="btn btn-primary button" />
+								Search
+							</div>
+							<div class="col-sm-1">
+								<button
+									type="button"
+									class="btn btn-success button"
+									id="get-current">
+									Current
+								</button>
+							</div>
+						</div>
+					</form>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<h1 id="city"></h1>
+						</div>
+						<div class="col-sm-6">
+							<div class="d-flex weather-temperature">
+								<img src="" alt="Clear" id="icon" />
+								<div>
+									<strong id="temperature"></strong
+									><span class="units"
+										><a href="#" id="celsius-link" class="active">°C </a>|
+										<a href="#" id="fahrenheit-link">°F</a>
+									</span>
+								</div>
+							</div>
+							<div class="overview">
+								<ul>
+									<li id="date"></li>
+									<li id="description"></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<ul>
+								<li>Humidity: <span id="humidity"></span>%</li>
+								<li>Wind: <span id="wind"></span>Km/H</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-primary" id="get-current">
-						Current
-					</button>
 				</div>
 			</div>
-			<section>
-				<div class="row">
-					<div class="col-sm-6">
-						<img
-							src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-							alt="clear"
-							id="current_icon" />
-						<span class="current_temperature"></span>
-						<span class="scale"
-							><a href="# " id="celsius">°C</a> |
-							<a href="#" id="fahrenheit">F°</a></span
-						>
-						<p class="card-text" id="get-date"></p>
-						<p class="card-text" id="get-description"></p>
-					</div>
-
-					<div class="col-sm-4 row align-items-center-sm">
-						<a href="#" class="list-group-item list-group-item-action">
-							<a
-								href="#"
-								class="list-group-item list-group-item-action bg-opacity"
-								>Wind: <span id="wind"></span> KMPH</a
-							>
-							<a
-								href="#"
-								class="list-group-item list-group-item-action bg-opacity"
-								>Humidity: <span id="humidity"></span>%</a
-							>
-						</a>
-					</div>
-				</div>
-			</section>
-
 			<div class="card" id="weather-cards">
 				<div class="row">
 					<div class="col-sm-2">
@@ -148,6 +159,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="github_link">
 			<a
 				href="https://github.com/AnastasiaCodeGirl/my-awesome-project"
@@ -155,8 +167,12 @@
 				target="_blank"
 				rel="noopener"
 				>Open-source code </a
-			>by Anastasiia Shumeiko
+			>by Anastasiia Shumeiko and hosted on
+			<a href="https://timely-travesseiro-9669df.netlify.app/" class=""
+				>Netlify</a
+			>
 		</div>
+
 		<script src="script.js"></script>
 	</body>
 </html>
