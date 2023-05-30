@@ -23,8 +23,8 @@
 		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 	</head>
 	<body>
+		<img class="icon" src="img/app_icon.svg" alt="app_icon" width="90px" />
 		<div class="container">
-			<img class="icon" src="img/app_icon.svg" alt="app_icon" width="90px" />
 			<!-- <h1 class="heading-style">WeatherApp</h1> -->
 			<div class="weather-app-wrapper">
 				<div class="weather-app">
@@ -56,11 +56,15 @@
 							</div>
 						</div>
 					</form>
+					<h1 id="city"></h1>
+					<div class="overview">
+						<ul>
+							<li id="date"></li>
+							<li id="description"></li>
+						</ul>
+					</div>
 
 					<div class="row">
-						<div class="col-sm-12">
-							<h1 id="city"></h1>
-						</div>
 						<div class="col-sm-6">
 							<div class="d-flex weather-temperature">
 								<img src="" alt="Clear" id="icon" />
@@ -72,17 +76,12 @@
 									</span>
 								</div>
 							</div>
-							<div class="overview">
-								<ul>
-									<li id="date"></li>
-									<li id="description"></li>
-								</ul>
-							</div>
 						</div>
-						<div class="col-md-6">
+
+						<div class="col-sm-6 weather-properties">
 							<ul>
 								<li>Humidity: <span id="humidity"></span>%</li>
-								<li>Wind: <span id="wind"></span>Km/H</li>
+								<li>Wind: <span id="wind"></span> KMPH</li>
 							</ul>
 						</div>
 					</div>
