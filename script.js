@@ -39,6 +39,29 @@ function displayTemperature(response) {
 	iconElement.setAttribute("src", response.data.condition.icon_url);
 	iconElement.setAttribute("alt", response.data.condition.description);
 }
+function displayForecast() {
+	let forecastElement = document.querySelector("#forecast");
+	let forecastHTML = `<div class="row">`;
+	let days = ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	days.forEach((day) => {
+		forecastHTML =
+			forecastHTML +
+			`	<div class="col-sm-2">
+						<div class="card text-center">
+							<div class="card-body">
+								<h5 class="card-title">${day}</h5>
+								<i class="fa-solid fa-sun"></i>
+								<br />
+								<p class="card-text">19°</p>
+								<span class="card-text">9°</span>
+							</div>
+						</div>
+					</div>`;
+	});
+
+	forecastHTML = forecastHTML + `</div>`;
+	forecastElement.innerHTML = forecastHTML;
+}
 function search(city) {
 	let apiKey = "fed24a4a3934t32fo5a63bbe36a70167";
 	let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
@@ -91,4 +114,5 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 let celsiusTemperature = null;
 let fahrenheitTemperature = null;
+displayForecast();
 search("Amsterdam");

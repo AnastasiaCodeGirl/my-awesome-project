@@ -25,44 +25,38 @@
 	<body>
 		<img class="icon" src="img/app_icon.svg" alt="app_icon" width="90px" />
 		<div class="container">
+			<form id="search-form" class="mb-3">
+				<div class="row">
+					<div class="col-sm-10">
+						<input
+							type="search"
+							placeholder="Type a city..."
+							id="city-input"
+							autocomplete="off"
+							class="form-control" />
+					</div>
+					<div class="col-sm-1">
+						<button
+							type="submit"
+							id="search-btn"
+							value="Search"
+							class="btn btn-primary button" />
+						Search
+					</div>
+					<div class="col-sm-1">
+						<button
+							type="button"
+							class="btn btn-success button"
+							id="get-current">
+							Current
+						</button>
+					</div>
+				</div>
+			</form>
 			<!-- <h1 class="heading-style">WeatherApp</h1> -->
 			<div class="weather-app-wrapper">
 				<div class="weather-app">
-					<form id="search-form" class="mb-3">
-						<div class="row">
-							<div class="col-sm-8">
-								<input
-									type="search"
-									placeholder="Type a city..."
-									id="city-input"
-									autocomplete="off"
-									class="form-control" />
-							</div>
-							<div class="col-sm-2">
-								<button
-									type="submit"
-									id="search-btn"
-									value="Search"
-									class="btn btn-primary button" />
-								Search
-							</div>
-							<div class="col-sm-1">
-								<button
-									type="button"
-									class="btn btn-success button"
-									id="get-current">
-									Current
-								</button>
-							</div>
-						</div>
-					</form>
 					<h1 id="city"></h1>
-					<div class="overview">
-						<ul>
-							<li id="date"></li>
-							<li id="description"></li>
-						</ul>
-					</div>
 
 					<div class="row">
 						<div class="col-sm-6">
@@ -84,78 +78,17 @@
 								<li>Wind: <span id="wind"></span> KMPH</li>
 							</ul>
 						</div>
+						<div class="overview">
+							<ul>
+								<li id="date"></li>
+								<li id="description"></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="card" id="weather-cards">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Sunday</h5>
-								<i class="fa-solid fa-cloud-rain"></i>
-								<br />
-								<p class="card-text">19°</p>
-								<span class="card-text">11°</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Monday</h5>
-								<i class="fa-solid fa-cloud"></i>
-								<br />
-								<p class="card-text">20°</p>
-								<span class="card-text">12°</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Tuesday</h5>
-								<i class="fa-solid fa-cloud-rain"></i>
-								<br />
-								<p class="card-text">16°</p>
-								<span class="card-text">11°</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Wednesday</h5>
-								<i class="fa-solid fa-cloud-sun-rain"></i>
-								<br />
-								<p class="card-text">15°</p>
-								<span class="card-text">9°</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Thursday</h5>
-								<i class="fa-solid fa-cloud-sun-rain"></i>
-								<br />
-								<p class="card-text">17°</p>
-								<span class="card-text">9°</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="card text-center">
-							<div class="card-body">
-								<h5 class="card-title">Friday</h5>
-								<i class="fa-solid fa-sun"></i>
-								<br />
-								<p class="card-text">19°</p>
-								<span class="card-text">9°</span>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="card" id="forecast">
+			
 			</div>
 		</div>
 

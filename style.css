@@ -62,7 +62,7 @@ li::first-letter {
   margin-top: 20px;
 }
 
-#weather-cards {
+#forecast {
   background: transparent;
   border: none;
 }
@@ -76,14 +76,17 @@ li::first-letter {
 .weather-app {
   padding: 20px;
 }
+span.card-text {
+  color: #70757a;
+}
 
 .overview {
   color: #fff;
 }
 
 .weather-app-wrapper {
-  max-width: 600px;
-  margin: 30px auto;
+  max-width: 800px;
+  margin: 30px 30px;
   color: #fff;
 }
 .weather-temperature strong {
