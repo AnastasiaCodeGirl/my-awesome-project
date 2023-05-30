@@ -66,6 +66,11 @@ li::first-letter {
   background: transparent;
   border: none;
 }
+.card-body{
+  /* background: #feff94; */
+  background: #d7aef3;
+ 
+}
 .button{
   padding: 6px 30px;
   color: #fff;

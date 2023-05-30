@@ -20,8 +20,26 @@ function formatDate(timeStamp) {
 	let day = days[date.getDay()];
 	return `${day} ${hours}:${minutes}`;
 }
+function getForecast(coordinates) {
+	let apiKey = "fed24a4a3934t32fo5a63bbe36a70167";
+	let userApi = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+	axios.get(userApi).then(displayForecast);
+}
+function formatDay(timestamp) {
+	let date = new Date(timestamp * 1000);
+	let days = [
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+	];
+	let day = days[date.getDay()];
+	return day;
+}
 function displayTemperature(response) {
-	console.log(response.data);
 	let temperatureElement = document.querySelector("#temperature");
 	let cityElement = document.querySelector("#city");
 	let descriptionElement = document.querySelector("#description");
@@ -38,25 +56,28 @@ function displayTemperature(response) {
 	dateElement.innerHTML = formatDate(response.data.time * 1000);
 	iconElement.setAttribute("src", response.data.condition.icon_url);
 	iconElement.setAttribute("alt", response.data.condition.description);
+	getForecast(response.data.coordinates);
 }
-function displayForecast() {
+function displayForecast(response) {
 	let forecastElement = document.querySelector("#forecast");
 	let forecastHTML = `<div class="row">`;
-	let days = ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	days.forEach((day) => {
-		forecastHTML =
-			forecastHTML +
-			`	<div class="col-sm-2">
+	let forecast = response.data.daily;
+
+	forecast.forEach((forecastDay, index) => {
+		if (index < 6) {
+			forecastHTML += `	<div class="col-sm-2">
 						<div class="card text-center">
 							<div class="card-body">
-								<h5 class="card-title">${day}</h5>
-								<i class="fa-solid fa-sun"></i>
+								<h5 class="card-title">${formatDay(forecastDay.time)}</h5>
+								<img src = ${forecastDay.condition.icon_url}
+								alt=${forecastDay.condition.description}>
 								<br />
-								<p class="card-text">19°</p>
-								<span class="card-text">9°</span>
+								<p class="card-text">${Math.round(forecastDay.temperature.maximum)}</p>
+								<span class="card-text">${Math.round(forecastDay.temperature.minimum)}</span>
 							</div>
 						</div>
 					</div>`;
+		}
 	});
 
 	forecastHTML = forecastHTML + `</div>`;
@@ -70,7 +91,6 @@ function search(city) {
 }
 function displayFahrenheitTemperature(event) {
 	event.preventDefault();
-	//add the active link to the celsius link
 	celsiusLink.classList.remove("active");
 	fahrenheitLink.classList.add("active");
 	fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -78,7 +98,6 @@ function displayFahrenheitTemperature(event) {
 	temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 function showPosition(position) {
-	console.log(position);
 	let lat = position.coords.latitude;
 	let long = position.coords.longitude;
 	let apiKey = "fed24a4a3934t32fo5a63bbe36a70167";
@@ -91,7 +110,6 @@ function getPosition(event) {
 }
 function displayCelsiusTemperature(event) {
 	event.preventDefault();
-	//remove the active link from celsius link
 	fahrenheitLink.classList.remove("active");
 	celsiusLink.classList.add("active");
 	let temperatureElement = document.querySelector("#temperature");
@@ -100,7 +118,6 @@ function displayCelsiusTemperature(event) {
 function handleSubmit(event) {
 	event.preventDefault();
 	let cityInputElement = document.querySelector("#city-input");
-	console.log(cityInputElement.value);
 	let city = cityInputElement.value;
 	search(city);
 }
@@ -114,5 +131,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 let celsiusTemperature = null;
 let fahrenheitTemperature = null;
-displayForecast();
 search("Amsterdam");
